@@ -1,33 +1,43 @@
-import React, { useReducer } from 'react';
-
-export initialState = [
-    {
-        item: 'Create to-do list',
+export const initialState = {
+    todo: [
+        {
+        item: '',
         completed: false,
-        id: 1234
+        id: '' 
     },
     {
-        item: 'Read React docs',
+        item: 'Clean room',
         completed: false,
-        id: 5678
+        id: '' 
     },
     {
-        item: 'Take notes',
+        item: 'Study',
         completed: false,
-        id: 9101
+        id: '' 
     }
-]
+] 
+};
 
-
-export function reducer(state, action){
-    switch(action.type){
-        // case 'add':
-        //     return { };
-        // case 'edit':
-        //     return {};
-        // case 'delete':
-        //     return {};
+export const reducer = (state, action) => {
+    switch(action.type) {
+        case 'ADD_TODO':
+            return {
+                ...state,
+               item: action.payload,
+               completed: false,
+               id: new Date()
+            };
+        case 'TOGGLE_TODO':
+            return {
+                ...state,
+                completed: !state.completed
+            };
+        // case 'CLEAR_TODO':
+        //     return {
+        //         ...state,
+        //     };
         default: 
-            return state
+            return state;
     }
-}
+};
+
