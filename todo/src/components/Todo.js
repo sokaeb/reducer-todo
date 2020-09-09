@@ -1,17 +1,20 @@
 import React from 'react';
-// import ListForm from './ListForm';
-
+import { ACTIONS } from '../reducers/reducer';
 
 const Todo = (props) => {
-    const { item } = props
+    const { todo, dispatch } = props
 
-    return(
-        <>
+    return (
         <div>
-            <p>{props.item.item}</p>
-        </div>
-        </>
+            <span style={{ color: todo.completed ? '#AAA' : '#000'}}>
+                {todo.name}
+            </span>
+            <button onClick={() => dispatch({type: ACTIONS.TOGGLE_TODO, payload: { id: todo.id }})}>Toggle</button>
+            <button onClick={() => dispatch({type: ACTIONS.DELETE_TODO, payload: { id: todo.id }})}>Delete</button>
+         
+        </div> 
     );
 };
 
 export default Todo;
+
